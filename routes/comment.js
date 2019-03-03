@@ -7,7 +7,7 @@ let usrs = require("../public/jsons/user.json");
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   let user_id = req.param('id');
-  let ans = obj.find(el => el._id === user_id);
+  let ans = obj.find(el => el._id == user_id);
   if(ans) {
     res.send(ans);
   }
@@ -42,7 +42,7 @@ router.post('/', function(req, res) {
   fs.writeFile("./public/jsons/comment.json", JSON.stringify(obj), (err, result) => {
     if(err) console.log('error', err);
   });
-  res.send('Comentario agregado');
+  res.send(`Chat agregado correctamente con id ${id}`);
 });
 
 router.delete('/', function(req, res) {

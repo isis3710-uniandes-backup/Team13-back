@@ -50,3 +50,34 @@ Luego, corralo con start
                 }]
         }
  
+
+ ## Clase Mensaje de Chat
+ 
+ Get de todos los chats o por ID.
+ 
+    http://localhost:3000/chatmsg
+    
+    http://localhost:3000/chatmsg?id=5c7bed121829835899501913
+    
+ Post de un chat
+ 
+    {	
+       "text": "MAS NUEVO MAS NUEVO ut eiusmod. Adipisicing aliquip aute pariatur aliquip excepteur eiusmod ad commodo.\r\n",
+        "timeStamp": "Wed Dec 06 1978 08:26:10 GMT-0500 (Colombia Standard Time)}",
+        "userID": "5c7bf45a50dabdff479f59f8"
+    }
+
+ Delete de un chat por ID
+ 
+    http://localhost:3000/chatmsg?id=5c7bed124a4d3a10d83c7325
+ 
+ Update/PUT de un chat por ID
+ 
+    http://localhost:3000/chatmsg?id=5c7bed121829835899501913
+    
+    {	
+       "text": "ALGO MAS NUEVO NUEVO ut eiusmod. Adipisicing aliquip aute pariatur aliquip excepteur eiusmod ad commodo.\r\n",
+        "timeStamp": "Wed Dec 06 1978 08:26:10 GMT-0500 (Colombia Standard Time)}"
+    }
+ 
+ 

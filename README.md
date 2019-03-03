@@ -1,14 +1,23 @@
 # Team13-back
 
 Para correr el programa primero instale las dependencias necesarias con:
-  npm install
+
+    npm install
+            
 Luego, corralo con start
-  npm start
+
+    npm start
   
- ## Para la clase Chat
+ ## Clase Chat
+
+ Get de todos los chats o por ID.
  
- el get
- el post
+    http://localhost:3000/chat
+    
+    http://localhost:3000/chat?id=614532168092341000000
+    
+ Post de un chat
+ 
       {	
         "messages": [
             {
@@ -25,17 +34,50 @@ Luego, corralo con start
         ]
     }
 
- el delete
- http://localhost:3000/chat?id=614532168092341000000
+ Delete de un chat por ID
  
- el update(put)
- http://localhost:3000/chat?id=707620319244405600000
+    http://localhost:3000/chat?id=614532168092341000000
  
-  {
-  "messages": [{
-                "text": "TEXTO PRUEBA TEXTO PRUEBA PRUEBA PRUEBA\r\n",
-                "timeStamp": "Tue Feb 17 2015 19:16:26 GMT-0500 (Colombia Standard Time)}",
-                "userID": "5c7bf45a50dabdff479f59f8"
-            }]
+ Update/PUT de un chat por ID
+ 
+    http://localhost:3000/chat?id=707620319244405600000
+    
+      {
+      "messages": [{
+                    "text": "TEXTO PRUEBA TEXTO PRUEBA PRUEBA PRUEBA\r\n",
+                    "timeStamp": "Tue Feb 17 2015 19:16:26 GMT-0500 (Colombia Standard Time)}",
+                    "userID": "5c7bf45a50dabdff479f59f8"
+                }]
+        }
+ 
+
+ ## Clase Mensaje de Chat
+ 
+ Get de todos los chats o por ID.
+ 
+    http://localhost:3000/chatmsg
+    
+    http://localhost:3000/chatmsg?id=5c7bed121829835899501913
+    
+ Post de un chat
+ 
+    {	
+       "text": "MAS NUEVO MAS NUEVO ut eiusmod. Adipisicing aliquip aute pariatur aliquip excepteur eiusmod ad commodo.\r\n",
+        "timeStamp": "Wed Dec 06 1978 08:26:10 GMT-0500 (Colombia Standard Time)}",
+        "userID": "5c7bf45a50dabdff479f59f8"
     }
+
+ Delete de un chat por ID
+ 
+    http://localhost:3000/chatmsg?id=5c7bed124a4d3a10d83c7325
+ 
+ Update/PUT de un chat por ID
+ 
+    http://localhost:3000/chatmsg?id=5c7bed121829835899501913
+    
+    {	
+       "text": "ALGO MAS NUEVO NUEVO ut eiusmod. Adipisicing aliquip aute pariatur aliquip excepteur eiusmod ad commodo.\r\n",
+        "timeStamp": "Wed Dec 06 1978 08:26:10 GMT-0500 (Colombia Standard Time)}"
+    }
+ 
  

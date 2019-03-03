@@ -9,9 +9,14 @@ Luego, corralo con start
     npm start
   
  ## Clase Chat
+
+ Get de todos los chats o por ID.
  
- el get
- el post
+    http://localhost:3000/chat
+    
+    http://localhost:3000/chat?id=614532168092341000000
+    
+ Post de un chat
  
       {	
         "messages": [
@@ -29,11 +34,11 @@ Luego, corralo con start
         ]
     }
 
- el delete
+ Delete de un chat por ID
  
     http://localhost:3000/chat?id=614532168092341000000
  
- el update(put)
+ Update/PUT de un chat por ID
  
     http://localhost:3000/chat?id=707620319244405600000
     

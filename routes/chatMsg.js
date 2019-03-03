@@ -41,7 +41,7 @@ router.post('/', function(req, res) {
   fs.writeFile("./public/jsons/chatMsg.json", JSON.stringify(obj), (err, result) => {
     if(err) console.log('error', err);
   });
-  res.send('Mensaje de chat agregado');
+  res.send(`Mensaje de Chat agregado correctamente con id ${id}`);
 });
 
 router.delete('/', function(req, res) {

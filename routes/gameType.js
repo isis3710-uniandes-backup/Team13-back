@@ -30,7 +30,6 @@ router.get('/', (req, res) => {
 		}
 	}
 	else{
-		console.log("devolverá game type");
 		res.send(gtFile);
 	}
 });
@@ -46,7 +45,9 @@ router.post('/', (req, res) => {
 	if (gt.name === undefined || gt.name === null || gt.description === undefined
 		|| gt.description === null || gt.timeLimit === undefined || 
 		gt.timeLimit ===null || gt.logoURL === undefined || gt.logoURL === null){
+		res.status(400);
 		res.send("invalid param");
+		return;
 	}
 
 	let newGt ={
@@ -78,7 +79,10 @@ router.put('/', (req, res) => {
 	let gt = req.body;
 
 	if (gt._id === undefined || gt._id === null){
-		return "invalid param";
+
+		res.status(400);
+		res.send("invalid param");
+		return;
 	}
 
 	let oldGt = gtFile.find( g => {
@@ -88,6 +92,7 @@ router.put('/', (req, res) => {
 	if(oldGt === undefined){
 		res.status(404);
 		res.send("game type not found");
+		return;
 	}
 	else{
 		oldGt.name = gt.name; 
@@ -114,7 +119,9 @@ router.delete("/", (req, res) => {
 	let uid = req.param('id');
 
 	if( uid === undefined || uid === null){
-		return "invalid param";
+		res.status(400);
+		res.send("invalid param");
+		return;
 	}
 
 	let gt = gtFile.find( g => {

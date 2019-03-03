@@ -12,6 +12,7 @@ Luego, corralo con start
  
  el get
  el post
+ 
       {	
         "messages": [
             {
@@ -29,16 +30,18 @@ Luego, corralo con start
     }
 
  el delete
- http://localhost:3000/chat?id=614532168092341000000
+ 
+    http://localhost:3000/chat?id=614532168092341000000
  
  el update(put)
- http://localhost:3000/chat?id=707620319244405600000
  
-  {
-  "messages": [{
-                "text": "TEXTO PRUEBA TEXTO PRUEBA PRUEBA PRUEBA\r\n",
-                "timeStamp": "Tue Feb 17 2015 19:16:26 GMT-0500 (Colombia Standard Time)}",
-                "userID": "5c7bf45a50dabdff479f59f8"
-            }]
-    }
+    http://localhost:3000/chat?id=707620319244405600000
+    
+      {
+      "messages": [{
+                    "text": "TEXTO PRUEBA TEXTO PRUEBA PRUEBA PRUEBA\r\n",
+                    "timeStamp": "Tue Feb 17 2015 19:16:26 GMT-0500 (Colombia Standard Time)}",
+                    "userID": "5c7bf45a50dabdff479f59f8"
+                }]
+        }
  

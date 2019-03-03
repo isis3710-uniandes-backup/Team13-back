@@ -1,11 +1,14 @@
 # Team13-back
 
 Para correr el programa primero instale las dependencias necesarias con:
-  npm install
+
+    npm install
+            
 Luego, corralo con start
-  npm start
+
+    npm start
   
- ## Para la clase Chat
+ ## Clase Chat
  
  el get
  el post

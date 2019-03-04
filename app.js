@@ -9,6 +9,7 @@ var commentsRouter = require('./routes/comment');
 var chatmsgRouter = require('./routes/chatMsg');
 var chatsRouter = require('./routes/chat');
 var gameTypeRouter = require('./routes/gameType');
+var achievementRouter = require('./routes/achievement');
 var userRouter = require('./routes/user');
 
 var app = express();
@@ -29,6 +30,7 @@ app.use('/comment', commentsRouter);
 app.use('/chatmsg', chatmsgRouter);
 app.use('/chat', chatsRouter);
 app.use('/gameType', gameTypeRouter);
+app.use('/achievement', achievementRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

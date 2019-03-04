@@ -6,25 +6,8 @@ let uFile = require("../public/jsons/user.json");
 //ás adelante se debe reemplazar por una conexión al a BD.
 //No se le incluye contraseña a los usuarios, puesto que esta autenticación se piensa manejar con
 //auth0.
-var uid = 1
+var uid = 1;
 
-/*	users: [
-		{	
-			nickname: "FelipeV",
-			uid: 0,
-			score: 0,
-			level: 1,
-			loggedIn: false,
-			email: "f.velasquez@uniandes.edu.co",
-
-			//TODO, estos y (sus métodos (add achievement, etc...)?)
-			achievements: [],
-			pastGames: [],
-			currentGame: null,
-			storyboards: [],
-			chats: []
-		}
-	],*/
 
 /*
 Recibe por parámetro un nickname de un usuario y retorna el objeto usuario correspondiente o null si no existe.
@@ -38,16 +21,16 @@ router.get("/", (req, res) => {
 	if(nickname !== undefined && nickname != null){
 		//En el futuro, esto se deberá cambiar por una función que busque en la base de datos.
 		//Preferiblemente en otro módulo (para mantener lógica separado de acceso a datos).
-		let user = users.find( u => {
+		let user = uFile.find( u => {
 			return u.nickname === nickname;
 		});
 
-		if (nickname === undefined){
+		if (user === undefined){
 			res.status(404);
 			res.send("user not found");
 		}
 		else{
-			res.send(gt);
+			res.send(user);
 		}
 	}
 	else{

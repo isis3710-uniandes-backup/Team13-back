@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "nickname": "Some new nickname",
+    "fullname": "Some new fullname",
+    "score": 7000,
+    "level": 5,
+    "isloggedin": false
+  },
+  {
+    "id": 2,
+    "nickname": "Some nickname",
+    "fullname": "Some fullname",
+    "score": 1000,
+    "level": 3,
+    "isloggedin": false
+  },
+  {
+    "id": 3,
+    "nickname": "Some nickname",
+    "fullname": "Some fullname",
+    "score": 1000,
+    "level": 3,
+    "isloggedin": false
+  },
+  {
+    "id": 4,
+    "nickname": "Some nickname",
+    "fullname": "Some fullname",
+    "score": 1000,
+    "level": 3,
+    "isloggedin": false
+  },
+  {
+    "id": 5,
+    "nickname": "Some nickname",
+    "fullname": "Some fullname",
+    "score": 1000,
+    "level": 3,
+    "isloggedin": false
+  },
+  {
+    "id": 6,
+    "nickname": "Some nickname",
+    "fullname": "Some fullname",
+    "score": 1000,
+    "level": 3,
+    "isloggedin": false
+  },
+  {
+    "id": 7,
+    "nickname": "Some nickname",
+    "fullname": "Some fullname",
+    "score": 1000,
+    "level": 3,
+    "isloggedin": false
+  },
+  {
+    "id": 8,
+    "nickname": "Some new nickname",
+    "fullname": "Some new fullname",
+    "score": 7000,
+    "level": 5,
+    "isloggedin": false
+  },
+  {
+    "id": 9,
+    "nickname": "Some nickname",
+    "fullname": "Some fullname",
+    "score": 1000,
+    "level": 3,
+    "isloggedin": false
+  },
+  {
+    "id": 10,
+    "nickname": "Some nickname",
+    "fullname": "Some fullname",
+    "score": 1000,
+    "level": 3,
+    "isloggedin": false
+  }
+]

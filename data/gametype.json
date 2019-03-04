@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "name": "Some new name",
+    "description": "Some new description",
+    "logoURL": "https://www.nps.gov/articles/images/Image-w-cred-cap_-1200w-_-Brown-Bear-page_-brown-bear-in-fog_2_1.jpg?maxwidth=1200&maxheight=1200&autorotate=false",
+    "timelimit": 20
+  },
+  {
+    "id": 2,
+    "name": "Some name",
+    "description": "Some description",
+    "logoURL": "https://www.nps.gov/articles/images/Image-w-cred-cap_-1200w-_-Brown-Bear-page_-brown-bear-in-fog_2_1.jpg?maxwidth=1200&maxheight=1200&autorotate=false",
+    "timelimit": 20
+  },
+  {
+    "id": 3,
+    "name": "Some name",
+    "description": "Some description",
+    "logoURL": "https://www.nps.gov/articles/images/Image-w-cred-cap_-1200w-_-Brown-Bear-page_-brown-bear-in-fog_2_1.jpg?maxwidth=1200&maxheight=1200&autorotate=false",
+    "timelimit": 20
+  },
+  {
+    "id": 4,
+    "name": "Some name",
+    "description": "Some description",
+    "logoURL": "https://www.nps.gov/articles/images/Image-w-cred-cap_-1200w-_-Brown-Bear-page_-brown-bear-in-fog_2_1.jpg?maxwidth=1200&maxheight=1200&autorotate=false",
+    "timelimit": 20
+  },
+  {
+    "id": 5,
+    "name": "Some name",
+    "description": "Some description",
+    "logoURL": "https://www.nps.gov/articles/images/Image-w-cred-cap_-1200w-_-Brown-Bear-page_-brown-bear-in-fog_2_1.jpg?maxwidth=1200&maxheight=1200&autorotate=false",
+    "timelimit": 20
+  },
+  {
+    "id": 6,
+    "name": "Some name",
+    "description": "Some description",
+    "logoURL": "https://www.nps.gov/articles/images/Image-w-cred-cap_-1200w-_-Brown-Bear-page_-brown-bear-in-fog_2_1.jpg?maxwidth=1200&maxheight=1200&autorotate=false",
+    "timelimit": 20
+  },
+  {
+    "id": 7,
+    "name": "Some name",
+    "description": "Some description",
+    "logoURL": "https://www.nps.gov/articles/images/Image-w-cred-cap_-1200w-_-Brown-Bear-page_-brown-bear-in-fog_2_1.jpg?maxwidth=1200&maxheight=1200&autorotate=false",
+    "timelimit": 20
+  },
+  {
+    "id": 8,
+    "name": "Some name",
+    "description": "Some description",
+    "logoURL": "https://www.nps.gov/articles/images/Image-w-cred-cap_-1200w-_-Brown-Bear-page_-brown-bear-in-fog_2_1.jpg?maxwidth=1200&maxheight=1200&autorotate=false",
+    "timelimit": 20
+  },
+  {
+    "id": 9,
+    "name": "Some name",
+    "description": "Some description",
+    "logoURL": "https://www.nps.gov/articles/images/Image-w-cred-cap_-1200w-_-Brown-Bear-page_-brown-bear-in-fog_2_1.jpg?maxwidth=1200&maxheight=1200&autorotate=false",
+    "timelimit": 20
+  },
+  {
+    "id": 10,
+    "name": "Some name",
+    "description": "Some description",
+    "logoURL": "https://www.nps.gov/articles/images/Image-w-cred-cap_-1200w-_-Brown-Bear-page_-brown-bear-in-fog_2_1.jpg?maxwidth=1200&maxheight=1200&autorotate=false",
+    "timelimit": 20
+  }
+]

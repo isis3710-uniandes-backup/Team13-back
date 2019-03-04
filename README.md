@@ -6,9 +6,9 @@ Before you run the app, you must install the required modules using:
             
 After you have done that, you are all set to execute the project with:
 
-    npm start
+    node server
  
- Finally, in order to run the automatic resource tests, run
+ Finally, in order to run the automatic resources tests, run
     
     npm test
     

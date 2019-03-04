@@ -1,22 +1,22 @@
 # Team13-back
 
-Para correr el programa primero instale las dependencias necesarias con:
+Before you run the app, you must install the required modules using:
 
     npm install
             
-Luego, corralo con start
+After you have done that, you are all set to execute the project with:
 
     npm start
   
- ## Clase Chat
+ ## Chat Resource
 
- Get de todos los chats o por ID.
+ HTTP GET method route for returning all chats or returning only one chat searched by ID.
  
     http://localhost:3000/chat
     
     http://localhost:3000/chat?id=614532168092341000000
     
- Post de un chat
+ HTTP POST method for a single chat
  
       {	
         "messages": [
@@ -34,11 +34,11 @@ Luego, corralo con start
         ]
     }
 
- Delete de un chat por ID
+ HTTP DELETE method for a single chat
  
     http://localhost:3000/chat?id=614532168092341000000
  
- Update/PUT de un chat por ID
+ HTTP PUT method for a single chat
  
     http://localhost:3000/chat?id=707620319244405600000
     
@@ -51,15 +51,15 @@ Luego, corralo con start
         }
  
 
- ## Clase Mensaje de Chat
+ ## Chat Message Resource
  
- Get de todos los chats o por ID.
+ HTTP GET method route for returning all chat messages or returning only one chat message searched by ID.
  
     http://localhost:3000/chatmsg
     
     http://localhost:3000/chatmsg?id=5c7bed121829835899501913
     
- Post de un mensaje de chat
+ HTTP POST method for a single chat message
  
     {	
        "text": "MAS NUEVO MAS NUEVO ut eiusmod. Adipisicing aliquip aute pariatur aliquip excepteur eiusmod ad commodo.\r\n",
@@ -67,11 +67,11 @@ Luego, corralo con start
         "userID": "5c7bf45a50dabdff479f59f8"
     }
 
- Delete de un mensaje de chat por ID
+ HTTP DELETE method for a single chat message
  
     http://localhost:3000/chatmsg?id=5c7bed124a4d3a10d83c7325
  
- Update/PUT de un mensaje de chat por ID
+ HTTP PUT method for a single chat message
  
     http://localhost:3000/chatmsg?id=5c7bed121829835899501913
     
@@ -80,15 +80,15 @@ Luego, corralo con start
         "timeStamp": "Wed Dec 06 1978 08:26:10 GMT-0500 (Colombia Standard Time)}"
     }
  
-  ## Clase Comentario
+  ## Comment Resource
  
- Get de todos los comentarios o por ID.
+ HTTP GET method route for returning all comments or returning only one comment searched by ID.
  
     http://localhost:3000/comment
     
     http://localhost:3000/comment?id=5c7be48d8f4a30514ff3fab3
     
- Post de un comentario
+ HTTP POST method for a single comment
  
     {	
        "text": "MAS NUEVO MAS NUEVO ut eiusmod. Adipisicing aliquip aute pariatur aliquip excepteur eiusmod ad commodo.\r\n",
@@ -96,11 +96,11 @@ Luego, corralo con start
         "userID": "5c7bf45a50dabdff479f59f8"
     }
 
- Delete de un comentario
+ HTTP DELETE method for a single comment
  
     http://localhost:3000/comment?id=417077870346140700000
  
- Update/PUT de un comentario de chat por ID
+ HTTP PUT method for a single comment
  
     http://localhost:3000/comment?id=417077870346140700000
     

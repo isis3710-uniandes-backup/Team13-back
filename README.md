@@ -25,3 +25,8 @@ After you have done that, you are all set to execute the project with:
     npm test
     
 Additionally, the Postman API tests can be found under the Postman collections folder.
+
+
+## Now there's a front-end!
+
+Check out our front-end project repo: https://github.com/isis3710-uniandes/Team13-front

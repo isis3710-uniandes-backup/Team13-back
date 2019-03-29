@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(require('./routes/server.routes'))
 
 
-const port = '3000';
+const port = '3001';
 
 // Starting server
 app.listen(port);

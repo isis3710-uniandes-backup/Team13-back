@@ -42,6 +42,7 @@ function updateCard(id, newCard) {
     return new Promise((resolve, reject) => {
         mustBeInArray(cards, id)
         .then(card => {
+            card.title = newCard.title
             card.imageURL = newCard.imageURL
             card.timestamp = newCard.timestamp
             card.text = newCard.text

@@ -1,19 +1,27 @@
 const filename = '../data/card.json'
 let cards = require(filename)
+let storyboards = require('../data/storyboard.json')
 const filenameToWrite = './data/card.json'
+const filenameToWrite2 = './data/storyboard.json'
 const fs = require('fs')
 
 //GET ALL CARDS
 function getCards(){
 	return new Promise((resolve, reject) => {
-        if (cards.length === 0) {
-            reject({
-                message: 'no cards available',
-                status: 202
-            })
-        }
-
         resolve(cards)
+    })
+}
+
+//GET ALL CARDS
+function getCardsByStoryboard(id){
+    return new Promise((resolve, reject) => {
+        let ans = [];
+        for(let i of cards){
+            if(i.storyboardId == id){
+                ans.push(i);
+            }
+        }
+        resolve(ans)
     })
 }
 
@@ -110,6 +118,7 @@ function writeJSONFile(filename, content) {
 //EXPORTS THAT WILL BE USED IN EXPRESS ROUTING-----------------------------------------------
 module.exports = {
     getCards,
+    getCardsByStoryboard,
     getCardById,
     createCard,
     updateCard,

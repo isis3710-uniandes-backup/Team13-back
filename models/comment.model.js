@@ -6,13 +6,6 @@ const fs = require('fs')
 //GET ALL COMMENTS
 function getComments(){
 	return new Promise((resolve, reject) => {
-        if (comments.length === 0) {
-            reject({
-                message: 'no comments available',
-                status: 202
-            })
-        }
-
         resolve(comments)
     })
 }

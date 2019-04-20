@@ -6,13 +6,6 @@ const fs = require('fs')
 //GET ALL USERS
 function getUsers(){
 	return new Promise((resolve, reject) => {
-        if (users.length === 0) {
-            reject({
-                message: 'no users available',
-                status: 202
-            })
-        }
-
         resolve(users)
     })
 }

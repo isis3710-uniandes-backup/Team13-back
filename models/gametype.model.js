@@ -6,13 +6,6 @@ const fs = require('fs')
 //GET ALL GAME TYPES
 function getGameTypes(){
 	return new Promise((resolve, reject) => {
-        if (gametypes.length === 0) {
-            reject({
-                message: 'no game types available',
-                status: 202
-            })
-        }
-
         resolve(gametypes)
     })
 }

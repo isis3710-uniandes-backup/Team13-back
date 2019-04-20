@@ -6,13 +6,6 @@ const fs = require('fs')
 //GET ALL ACHIEVEMENTS
 function getAchievements(){
 	return new Promise((resolve, reject) => {
-        if (ach.length === 0) {
-            reject({
-                message: 'no achievements available',
-                status: 202
-            })
-        }
-
         resolve(ach)
     })
 }

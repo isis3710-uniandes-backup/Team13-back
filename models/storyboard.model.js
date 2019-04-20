@@ -1,18 +1,13 @@
 const filename = '../data/storyboard.json'
 let storyboards = require(filename)
+let cards = require('../data/card.json')
+const filenameToWrite2 = './data/card.json'
 const filenameToWrite = './data/storyboard.json'
 const fs = require('fs')
 
 //GET ALL STORYBOARDS
 function getStoryboards(){
 	return new Promise((resolve, reject) => {
-        if (storyboards.length === 0) {
-            reject({
-                message: 'no storyboards available',
-                status: 202
-            })
-        }
-
         resolve(storyboards)
     })
 }
@@ -51,14 +46,18 @@ function updateStoryboard(id, newStoryboard) {
     })
 }
 
-//DELETE SINGLE STORYBOARD
+//DELETE SINGLE STORYBOARD AND ALL CARDS FROM IT
 function deleteStoryboard(id) {
     return new Promise((resolve, reject) => {
         mustBeInArray(storyboards, id)
         .then(() => {
             storyboards = storyboards.filter(p => p.id != id)
+            cards = cards.filter(p => p.storyboardId != id)
             rearrangeIDs(storyboards)
+            rearrangeIDs(cards)
+            rearrangeCardIDs(cards)
             writeJSONFile(filenameToWrite, storyboards)
+            writeJSONFile(filenameToWrite2, cards)
             resolve()
         })
         .catch(err => reject(err))
@@ -93,6 +92,14 @@ function rearrangeIDs(array){
     for(let i of array){
         i.id = count;
         count++;
+    }
+}
+
+function rearrangeCardIDs(array){
+    for(let i of array){
+        if(i.storyboardId > 1){
+            i.storyboardId = i.storyboardId-1;
+        }
     }
 }
 

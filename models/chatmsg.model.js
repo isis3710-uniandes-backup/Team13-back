@@ -6,13 +6,6 @@ const fs = require('fs')
 //GET ALL CHAT MESSAGES
 function getChatMessages(){
 	return new Promise((resolve, reject) => {
-        if (chatmsgs.length === 0) {
-            reject({
-                message: 'no chat messages available',
-                status: 202
-            })
-        }
-
         resolve(chatmsgs)
     })
 }

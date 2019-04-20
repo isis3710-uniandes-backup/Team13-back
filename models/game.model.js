@@ -6,13 +6,6 @@ const fs = require('fs')
 //GET ALL GAMES
 function getGames(){
 	return new Promise((resolve, reject) => {
-        if (games.length === 0) {
-            reject({
-                message: 'no games available',
-                status: 202
-            })
-        }
-
         resolve(games)
     })
 }

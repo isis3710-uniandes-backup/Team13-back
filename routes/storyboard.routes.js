@@ -60,7 +60,8 @@ router.delete('/:id', async (req, res) => {
     const id = req.params.id
     await storyboard.deleteStoryboard(id)
     .then(storyboard => res.json({
-        message: `The storyboard #${id} has been deleted and all the elements have been rearranged`
+        message: `The storyboard #${id} has been deleted, its cards removed and 
+        all the elements have been rearranged`
     }))
     .catch(err => {
         if (err.status) {
@@ -69,7 +70,6 @@ router.delete('/:id', async (req, res) => {
         res.status(500).json({ message: err.message })
     })
 })
-
 
 // Routes
 module.exports = router

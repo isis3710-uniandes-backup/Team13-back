@@ -6,13 +6,6 @@ const fs = require('fs')
 //GET ALL CHATS
 function getChats(){
 	return new Promise((resolve, reject) => {
-        if (chats.length === 0) {
-            reject({
-                message: 'no chats available',
-                status: 202
-            })
-        }
-
         resolve(chats)
     })
 }

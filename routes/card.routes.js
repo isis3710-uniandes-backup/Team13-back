@@ -15,6 +15,20 @@ router.get('/', async (req, res) => {
     })
 })
 
+/* All cards from Storyboard*/
+router.get('/story/:id', async (req, res) => {
+    const id = req.params.id
+    await card.getCardsByStoryboard(id)
+    .then(cards => res.json(cards))
+    .catch(err => {
+        if (err.status) {
+            res.status(err.status).json({ message: err.message })
+        } else {
+            res.status(500).json({ message: err.message })
+        }
+    })
+})
+
 /* One card by id */
 router.get('/:id', async (req, res) => {
     const id = req.params.id
@@ -69,7 +83,6 @@ router.delete('/:id', async (req, res) => {
         res.status(500).json({ message: err.message })
     })
 })
-
 
 // Routes
 module.exports = router

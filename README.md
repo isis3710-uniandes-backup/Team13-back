@@ -16,7 +16,7 @@ Before you run the app, you must install the required modules using:
 
     npm install
             
-Additionally, ensure nodemon is globally installed. In order to do this, run:
+Additionally, ensure nodemon is globally installed. If not, run:
 
     npm install -g nodemon
 

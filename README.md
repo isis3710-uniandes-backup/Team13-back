@@ -18,14 +18,13 @@ Before you run the app, you must install the required modules using:
             
 After you have done that, you are all set to execute the project with:
 
-    node server
+    nodemon
  
  Finally, in order to run the automatic resources tests, run
     
     npm test
     
-Additionally, the Postman API tests can be found under the Postman collections folder.
-
+Additionally, the Postman API tests can be found under the Postman collections folder.    
 
 ## Now there's a front-end!
 

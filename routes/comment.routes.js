@@ -1,9 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const comment = require('../models/comment.model')
+const middleauth = require('../middleware/auth.js');
+
 
 /* All comments */
-router.get('/', async (req, res) => {
+router.get('/', middleauth.checkToken, async (req, res) => {
     await comment.getComments()
     .then(comments => res.json(comments))
     .catch(err => {
@@ -16,7 +18,7 @@ router.get('/', async (req, res) => {
 })
 
 /* One comment by id */
-router.get('/:id', async (req, res) => {
+router.get('/:id', middleauth.checkToken, async (req, res) => {
     const id = req.params.id
     await comment.getCommentById(id)
     .then(comment => res.json(comment))
@@ -30,7 +32,7 @@ router.get('/:id', async (req, res) => {
 })
 
 /* Insert a new comment */
-router.post('/', async (req, res) => {
+router.post('/', middleauth.checkToken, async (req, res) => {
     await comment.createComment(req.body)
     .then(comment => res.status(201).json({
         message: `The comment #${comment.id} has been created.`,
@@ -40,7 +42,7 @@ router.post('/', async (req, res) => {
 })
 
 /* Update an comment */
-router.put('/:id', async (req, res) => {
+router.put('/:id', middleauth.checkToken, async (req, res) => {
     const id = req.params.id
     await comment.updateComment(id, req.body)
     .then(comment => res.json({
@@ -56,7 +58,7 @@ router.put('/:id', async (req, res) => {
 })
 
 /* Delete a post */
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', middleauth.checkToken, async (req, res) => {
     const id = req.params.id
     await comment.deleteComment(id)
     .then(comment => res.json({

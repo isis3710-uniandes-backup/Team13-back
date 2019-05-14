@@ -1,9 +1,11 @@
 const express = require('express')
 const router = express.Router()
-const card = require('../models/card.model')
+const card = require('../models/card.model');
+const middleauth = require('../middleware/auth.js');
+
 
 /* All cards */
-router.get('/', async (req, res) => {
+router.get('/', middleauth.checkToken, async (req, res) => {
     await card.getCards()
     .then(cards => res.json(cards))
     .catch(err => {
@@ -16,7 +18,7 @@ router.get('/', async (req, res) => {
 })
 
 /* All cards from Storyboard*/
-router.get('/story/:id', async (req, res) => {
+router.get('/story/:id', middleauth.checkToken, async (req, res) => {
     const id = req.params.id
     await card.getCardsByStoryboard(id)
     .then(cards => res.json(cards))
@@ -30,7 +32,7 @@ router.get('/story/:id', async (req, res) => {
 })
 
 /* One card by id */
-router.get('/:id', async (req, res) => {
+router.get('/:id', middleauth.checkToken, async (req, res) => {
     const id = req.params.id
     await card.getCardById(id)
     .then(card => res.json(card))
@@ -44,7 +46,7 @@ router.get('/:id', async (req, res) => {
 })
 
 /* Insert a new card */
-router.post('/', async (req, res) => {
+router.post('/', middleauth.checkToken, async (req, res) => {
     await card.createCard(req.body)
     .then(card => res.status(201).json({
         message: `The card #${card.id} has been created.`,
@@ -54,7 +56,7 @@ router.post('/', async (req, res) => {
 })
 
 /* Update an card */
-router.put('/:id', async (req, res) => {
+router.put('/:id', middleauth.checkToken, async (req, res) => {
     const id = req.params.id
     await card.updateCard(id, req.body)
     .then(card => res.json({
@@ -70,7 +72,7 @@ router.put('/:id', async (req, res) => {
 })
 
 /* Delete a post */
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', middleauth.checkToken, async (req, res) => {
     const id = req.params.id
     await card.deleteCard(id)
     .then(card => res.json({

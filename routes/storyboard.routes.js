@@ -1,9 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const storyboard = require('../models/storyboard.model')
+const middleauth = require('../middleware/auth.js');
+
 
 /* All storyboards */
-router.get('/', async (req, res) => {
+router.get('/', middleauth.checkToken, async (req, res) => {
     await storyboard.getStoryboards()
     .then(storyboards => res.json(storyboards))
     .catch(err => {
@@ -16,7 +18,7 @@ router.get('/', async (req, res) => {
 })
 
 /* One storyboard by id */
-router.get('/:id', async (req, res) => {
+router.get('/:id', middleauth.checkToken, async (req, res) => {
     const id = req.params.id
     await storyboard.getStoryboardById(id)
     .then(storyboard => res.json(storyboard))
@@ -30,7 +32,7 @@ router.get('/:id', async (req, res) => {
 })
 
 /* Insert a new storyboard */
-router.post('/', async (req, res) => {
+router.post('/', middleauth.checkToken, async (req, res) => {
     await storyboard.createStoryboard(req.body)
     .then(storyboard => res.status(201).json({
         message: `The storyboard #${storyboard.id} has been created.`,
@@ -40,7 +42,7 @@ router.post('/', async (req, res) => {
 })
 
 /* Update an storyboard */
-router.put('/:id', async (req, res) => {
+router.put('/:id', middleauth.checkToken, async (req, res) => {
     const id = req.params.id
     await storyboard.updateStoryboard(id, req.body)
     .then(storyboard => res.json({
@@ -56,7 +58,7 @@ router.put('/:id', async (req, res) => {
 })
 
 /* Delete a post */
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', middleauth.checkToken, async (req, res) => {
     const id = req.params.id
     await storyboard.deleteStoryboard(id)
     .then(storyboard => res.json({

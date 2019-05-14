@@ -1,9 +1,10 @@
 const express = require('express')
 const router = express.Router()
 const gametype = require('../models/gametype.model')
+const middleauth = require('../middleware/auth.js');
 
 /* All gametypes */
-router.get('/', async (req, res) => {
+router.get('/', middleauth.checkToken, async (req, res) => {
     await gametype.getGameTypes()
     .then(gametypes => res.json(gametypes))
     .catch(err => {
@@ -16,7 +17,7 @@ router.get('/', async (req, res) => {
 })
 
 /* One gametype by id */
-router.get('/:id', async (req, res) => {
+router.get('/:id', middleauth.checkToken, async (req, res) => {
     const id = req.params.id
     await gametype.getGameTypeById(id)
     .then(gametype => res.json(gametype))
@@ -30,7 +31,7 @@ router.get('/:id', async (req, res) => {
 })
 
 /* Insert a new gametype */
-router.post('/', async (req, res) => {
+router.post('/', middleauth.checkToken, async (req, res) => {
     await gametype.createGameType(req.body)
     .then(gametype => res.status(201).json({
         message: `The gametype #${gametype.id} has been created.`,
@@ -40,7 +41,7 @@ router.post('/', async (req, res) => {
 })
 
 /* Update an gametype */
-router.put('/:id', async (req, res) => {
+router.put('/:id', middleauth.checkToken, async (req, res) => {
     const id = req.params.id
     await gametype.updateGameType(id, req.body)
     .then(gametype => res.json({
@@ -56,7 +57,7 @@ router.put('/:id', async (req, res) => {
 })
 
 /* Delete a post */
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', middleauth.checkToken, async (req, res) => {
     const id = req.params.id
     await gametype.deleteGameType(id)
     .then(gametype => res.json({

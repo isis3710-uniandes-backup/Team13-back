@@ -1,9 +1,12 @@
 const express = require('express')
 const router = express.Router()
 const ach = require('../models/achievement.model')
+const middleauth = require('../middleware/auth.js');
+
+
 
 /* All achievements */
-router.get('/', async (req, res) => {
+router.get('/', middleauth.checkToken, async (req, res) => {
     await ach.getAchievements()
     .then(achs => res.json(achs))
     .catch(err => {
@@ -16,7 +19,7 @@ router.get('/', async (req, res) => {
 })
 
 /* One achievement by id */
-router.get('/:id', async (req, res) => {
+router.get('/:id', middleauth.checkToken, async (req, res) => {
     const id = req.params.id
     await ach.getAchievementById(id)
     .then(achievement => res.json(achievement))
@@ -30,7 +33,7 @@ router.get('/:id', async (req, res) => {
 })
 
 /* Insert a new achievement */
-router.post('/', async (req, res) => {
+router.post('/', middleauth.checkToken, async (req, res) => {
     await ach.createAchievement(req.body)
     .then(achievement => res.status(201).json({
         message: `The achievement #${achievement.id} has been created.`,
@@ -40,7 +43,7 @@ router.post('/', async (req, res) => {
 })
 
 /* Update an achievement */
-router.put('/:id', async (req, res) => {
+router.put('/:id', middleauth.checkToken, async (req, res) => {
     const id = req.params.id
     await ach.updateAchievement(id, req.body)
     .then(achievement => res.json({
@@ -56,7 +59,7 @@ router.put('/:id', async (req, res) => {
 })
 
 /* Delete a post */
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', middleauth.checkToken, async (req, res) => {
     const id = req.params.id
     await ach.deleteAchievement(id)
     .then(achievement => res.json({

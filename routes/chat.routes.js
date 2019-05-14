@@ -1,9 +1,11 @@
 const express = require('express')
 const router = express.Router()
-const chat = require('../models/chat.model')
+const chat = require('../models/chat.model');
+const middleauth = require('../middleware/auth.js');
+
 
 /* All chats */
-router.get('/', async (req, res) => {
+router.get('/', middleauth.checkToken, async (req, res) => {
     await chat.getChats()
     .then(chats => res.json(chats))
     .catch(err => {
@@ -16,7 +18,7 @@ router.get('/', async (req, res) => {
 })
 
 /* One chat by id */
-router.get('/:id', async (req, res) => {
+router.get('/:id', middleauth.checkToken, async (req, res) => {
     const id = req.params.id
     await chat.getChatById(id)
     .then(chat => res.json(chat))
@@ -30,7 +32,7 @@ router.get('/:id', async (req, res) => {
 })
 
 /* Insert a new chat */
-router.post('/', async (req, res) => {
+router.post('/', middleauth.checkToken, async (req, res) => {
     await chat.createChat(req.body)
     .then(chat => res.status(201).json({
         message: `The chat #${chat.id} has been created.`,
@@ -40,7 +42,7 @@ router.post('/', async (req, res) => {
 })
 
 /* Update an chat */
-router.put('/:id', async (req, res) => {
+router.put('/:id', middleauth.checkToken, async (req, res) => {
     const id = req.params.id
     await chat.updateChat(id, req.body)
     .then(chat => res.json({
@@ -56,7 +58,7 @@ router.put('/:id', async (req, res) => {
 })
 
 /* Delete a post */
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', middleauth.checkToken, async (req, res) => {
     const id = req.params.id
     await chat.deleteChat(id)
     .then(chat => res.json({

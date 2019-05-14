@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const user = require('../models/user.model')
+const middleauth = require('../middleware/auth.js');
+
 
 /*Log in, obtain JWT*/
 router.post('/login', async (req, res) => {
@@ -36,7 +38,7 @@ router.post('/register', async (req, res) => {
 /*Logout*/
 
 /* All users */
-router.get('/', async (req, res) => {
+router.get('/', middleauth.checkToken, async (req, res) => {
     await user.getUsers()
     .then(users => res.json(users))
     .catch(err => {
@@ -49,7 +51,7 @@ router.get('/', async (req, res) => {
 })
 
 /* One user by id */
-router.get('/:id', async (req, res) => {
+router.get('/:id', middleauth.checkToken, async (req, res) => {
     const id = req.params.id
     await user.getUserById(id)
     .then(user => res.json(user))
@@ -63,7 +65,7 @@ router.get('/:id', async (req, res) => {
 })
 
 /* Insert a new user */
-router.post('/', async (req, res) => {
+router.post('/', middleauth.checkToken, async (req, res) => {
     await user.createUser(req.body)
     .then(user => res.status(201).json({
         message: `The user #${user.id} has been created.`,
@@ -73,7 +75,7 @@ router.post('/', async (req, res) => {
 })
 
 /* Update an user */
-router.put('/:id', async (req, res) => {
+router.put('/:id', middleauth.checkToken, async (req, res) => {
     const id = req.params.id
     await user.updateUser(id, req.body)
     .then(user => res.json({
@@ -89,7 +91,7 @@ router.put('/:id', async (req, res) => {
 })
 
 /* Delete a post */
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', middleauth.checkToken,async (req, res) => {
     const id = req.params.id
     await user.deleteUser(id)
     .then(user => res.json({

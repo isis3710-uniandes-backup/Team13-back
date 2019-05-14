@@ -1,9 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const game = require('../models/game.model')
+const middleauth = require('../middleware/auth.js');
+
 
 /* All games */
-router.get('/', async (req, res) => {
+router.get('/', middleauth.checkToken, async (req, res) => {
     await game.getGames()
     .then(games => res.json(games))
     .catch(err => {
@@ -16,7 +18,7 @@ router.get('/', async (req, res) => {
 })
 
 /* One game by id */
-router.get('/:id', async (req, res) => {
+router.get('/:id', middleauth.checkToken, async (req, res) => {
     const id = req.params.id
     await game.getGameById(id)
     .then(game => res.json(game))
@@ -30,7 +32,7 @@ router.get('/:id', async (req, res) => {
 })
 
 /* Insert a new game */
-router.post('/', async (req, res) => {
+router.post('/', middleauth.checkToken, async (req, res) => {
     await game.createGame(req.body)
     .then(game => res.status(201).json({
         message: `The game #${game.id} has been created.`,
@@ -40,7 +42,7 @@ router.post('/', async (req, res) => {
 })
 
 /* Update an game */
-router.put('/:id', async (req, res) => {
+router.put('/:id', middleauth.checkToken, async (req, res) => {
     const id = req.params.id
     await game.updateGame(id, req.body)
     .then(game => res.json({
@@ -56,7 +58,7 @@ router.put('/:id', async (req, res) => {
 })
 
 /* Delete a post */
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', middleauth.checkToken, async (req, res) => {
     const id = req.params.id
     await game.deleteGame(id)
     .then(game => res.json({

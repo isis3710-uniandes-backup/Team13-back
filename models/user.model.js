@@ -2,62 +2,85 @@ const filename = '../data/user.json'
 let users = require(filename)
 const filenameToWrite = './data/user.json'
 const fs = require('fs')
+const dbConn = require("../database/user.database.js");
+
+//LOGIN
+//function login(){
+//
+//}
 
 //GET ALL USERS
 function getUsers(){
 	return new Promise((resolve, reject) => {
-        resolve(users)
-    })
+        dbConn.connect( (client, collection) => {
+            collection.find({}).toArray(function(errDatabase, docs) {
+                
+                if(errDatabase!==null)
+                    console.log("Error while getting the collection", errDatabase);
+                resolve(docs);
+                client.close();
+            })
+        });
+    });
 }
 
 //GET SINGLE USER BY ID
 function getUserById(id) {
     return new Promise((resolve, reject) => {
-        mustBeInArray(users, id)
-        .then(user => resolve(user))
-        .catch(err => reject(err))
+        dbConn.connect((client, collection) => {
+            collection.find({"id": parseInt(id)}).toArray(function(errDatabase, docs){
+                if(errDatabase!==null)
+                    console.log("Error while getting the collection", errDatabase);
+                resolve(docs);
+                client.close();
+            });
+        });
     })
 }
 
 //CREATE SINGLE USER
 function createUser(newUser) {
     return new Promise((resolve, reject) => {
-        const newID = getNewId(users) 
-        newUser.id = newID
-        users.push(newUser)
-        writeJSONFile(filenameToWrite, users)
-        resolve(newUser)
+        getUsers().then((u) => {
+
+            newUser.id = getNewId(u);
+
+            dbConn.connect((client, collection) => {
+                collection.insert(newUser).then(() => {
+                    resolve(newUser);
+                });
+            });
+        });
     })
 }
 
 //UPDATE SINGLE USER
 function updateUser(id, newUser) {
     return new Promise((resolve, reject) => {
-        mustBeInArray(users, id)
-        .then(user => {
-            user.nickname = newUser.nickname
-            user.fullname = newUser.fullname
-            user.score = newUser.score
-            user.level = newUser.level
-            user.isloggedin = newUser.isloggedin
-            writeJSONFile(filenameToWrite, users)
-            resolve(user)
-        })
-        .catch(err => reject(err))
-    })
+        newUser.id = parseInt(id);
+        dbConn.connect((client, collection) =>{
+            collection.replaceOne({"id": parseInt(id)}, newUser).then((err)=>{
+                if(err.result.nModified === 0){
+                    reject({message: "Id not found"});
+                    return;
+                }
+                resolve(newUser);
+            });
+        });
+    });
 }
 
 //DELETE SINGLE USER
 function deleteUser(id) {
     return new Promise((resolve, reject) => {
-        mustBeInArray(users, id)
-        .then(() => {
-            users = users.filter(p => p.id != id)
-            rearrangeIDs(users)
-            writeJSONFile(filenameToWrite, users)
-            resolve()
-        })
-        .catch(err => reject(err))
+        
+        dbConn.connect((client, collection) => {
+            collection.deleteOne({"id": parseInt(id)}).then(() => {
+                resolve();
+            }).catch((err) => {
+                reject(err);
+            });
+        });
     })
 }
 
@@ -69,35 +92,6 @@ const getNewId = (array) => {
     } else {
         return 1
     }
-}
-
-function mustBeInArray(array, id){
-    return new Promise((resolve, reject) => {
-        const row = array.find(r => r.id == id)
-        if (!row) {
-            reject({
-                message: 'ID is not good',
-                status: 404
-            })
-        }
-        resolve(row)
-    })
-}
-
-function rearrangeIDs(array){
-    let count = 1;
-    for(let i of array){
-        i.id = count;
-        count++;
-    }
-}
-
-function writeJSONFile(filename, content) {
-    fs.writeFile(filename, JSON.stringify(content), 'utf8', (err) => {
-        if (err) {
-            console.log(err)
-        }
-    })
 }
 
 

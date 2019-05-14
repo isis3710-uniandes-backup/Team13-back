@@ -2,6 +2,39 @@ const express = require('express')
 const router = express.Router()
 const user = require('../models/user.model')
 
+/*Log in, obtain JWT*/
+router.post('/login', async (req, res) => {
+    const username = req.body.nickname;
+    const password = req.body.password;
+    await user.login(username, password)
+    .then(response => res.json(response))
+    .catch(err => {
+        if (err.status) {
+            res.status(err.status).json({ message: err.message });
+        } else {
+            res.status(500).json({ message: err.message });
+        }
+    });
+})
+
+/*register*/
+router.post('/register', async (req, res) => {
+    const username = req.body.nickname;
+    const password = req.body.password;
+    console.log("On router register");
+    await user.register(username, password)
+    .then(response => res.json(response))
+    .catch(err => {
+        if (err.status) {
+            res.status(err.status).json({ message: err.message });
+        } else {
+            res.status(500).json({ message: err.message });
+        }
+    });
+})
+
+/*Logout*/
+
 /* All users */
 router.get('/', async (req, res) => {
     await user.getUsers()

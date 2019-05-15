@@ -1,6 +1,5 @@
 // Import packages
 const express = require('express');
-const cors = require('cors');
 
 // App
 const app = express();

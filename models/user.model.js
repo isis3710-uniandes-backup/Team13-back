@@ -2,6 +2,19 @@ const dbConn = require("../database/user.database.js");
 const jwt = require('jsonwebtoken');
 const config = require('../config/config.js');
 
+function isLogin(token) {
+    return new Promise((resolve, reject) => {
+
+        try {
+            jwt.verify(token, config.secret)
+            console.log("verify");
+            resolve({ valid: true });
+        } catch (err) {
+            resolve({ valid: false });
+        }
+    })
+}
+
 //LOGIN
 //password debe ser el hash md5 de la contraseña. PASSWORD NO DEBE VIAJAR EN TEXTO PLANO.
 function login(username, password) {
@@ -75,33 +88,32 @@ function register(nickname, password) {
             dbConn.connect((client, collection) => {
                 collection.find({ "nickname": nickname }).toArray(function(errDatabase, docs) {
 
-                    if(docs.length>0){
-                        reject({message: "Missing nickname or password"});
+                    if (docs.length > 0) {
+                        reject({ message: "Missing nickname or password" });
                         return;
                     }
-                    getUsers().then( (u) => {
-                       newUser = {
+                    getUsers().then((u) => {
+                        newUser = {
                             "nickname": nickname,
                             "password": password,
                             "id": getNewId(u),
-                            "isLoggedin": false 
+                            "isLoggedin": false
                         };
 
                         createUser(newUser).then(resolve).catch(reject);
 
                     })
-                    
+
 
                 });
             });
-        }
-        else{
-            reject({message: "Missing nickname or password"});
+        } else {
+            reject({ message: "Missing nickname or password" });
         }
     });
 }
 
-function logout(){
+function logout() {
 
 }
 
@@ -202,5 +214,6 @@ module.exports = {
     updateUser,
     deleteUser,
     login,
-    register
+    register,
+    isLogin
 }

@@ -19,7 +19,7 @@ function login(username, password) {
                     }
                     if (docs.length < 1) {
                         reject({
-                            message: 'Incorrect username or password!'
+                            message: 'Username already taken'
                         });
                         return;
                     }
@@ -45,9 +45,9 @@ function login(username, password) {
                         });
 
                         resolve({
-                            success: true,
                             message: 'Authentication successful!',
-                            token: token
+                            token: token,
+                            user: user
                         });
 
                     } else {

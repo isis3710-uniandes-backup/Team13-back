@@ -6,10 +6,13 @@ const middleauth = require('../middleware/auth.js');
 
 /*Log in, obtain JWT*/
 router.post('/login', async (req, res) => {
+    console.log("LOGIN");
     const username = req.body.nickname;
     const password = req.body.password;
     await user.login(username, password)
-    .then(response => res.json(response))
+    .then(response => {
+        res.json(response)
+    })
     .catch(err => {
         if (err.status) {
             res.status(err.status).json({ message: err.message });

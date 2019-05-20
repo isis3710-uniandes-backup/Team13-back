@@ -8,14 +8,15 @@ let connect =(callback) => {
   const client = new MongoClient(uri, {useNewUrlParser: true });
 
   client.connect(errClient=>{
-    if(errClient!==null) 
-      console.log("Error while connecting to mongodb: ", errClient);  
-    
+    if(errClient!==null)
+      console.log("Error while connecting to mongodb: ", errClient);
+
     const db = client.db("4BerryDB");
 
     const collection = db.collection("User");
 
     callback(client, collection);
+    console.log("conecto a mongo")
 
   });
 };

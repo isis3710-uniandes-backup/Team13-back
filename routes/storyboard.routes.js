@@ -30,6 +30,21 @@ router.get('/:id', middleauth.checkToken, async (req, res) => {
         }
     })
 })
+/* One storyboard by id */
+router.get('/user/:id', middleauth.checkToken, async (req, res) => {
+    console.log("entra")
+    const id = req.params.id
+    await storyboard.getStoryboardsByUser(id)
+    .then(storyboard => res.json(storyboard))
+    .catch(err => {
+        if (err.status) {
+            console.log("de aca")
+            res.status(err.status).json({ message: err.message })
+        } else {
+            res.status(500).json({ message: err.message })
+        }
+    })
+})
 
 /* Insert a new storyboard */
 router.post('/', middleauth.checkToken, async (req, res) => {

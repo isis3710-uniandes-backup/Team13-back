@@ -16,15 +16,23 @@ function getStoryboards(){
 function getStoryboardById(id) {
     return new Promise((resolve, reject) => {
         mustBeInArray(storyboards, id)
-        .then(storyboard => resolve(storyboard))
-        .catch(err => reject(err))
+            .then(storyboard => resolve(storyboard))
+            .catch(err => reject(err))
+    })
+}
+//GET SINGLE STORYBOARD BY ID
+function getStoryboardsByUser(user) {
+    return new Promise((resolve, reject) => {
+        mustBeInArray2(storyboards, user)
+            .then(storyboard => resolve(storyboard))
+            .catch(err => reject(err))
     })
 }
 
 //CREATE SINGLE STORYBOARD
 function createStoryboard(newStoryboard) {
     return new Promise((resolve, reject) => {
-        const newID = getNewId(storyboards) 
+        const newID = getNewId(storyboards)
         newStoryboard.id = newID
         storyboards.push(newStoryboard)
         writeJSONFile(filenameToWrite, storyboards)
@@ -86,6 +94,18 @@ function mustBeInArray(array, id){
         resolve(row)
     })
 }
+function mustBeInArray2(array, user){
+    return new Promise((resolve, reject) => {
+        const row = array.filter(r => r["userID"] == user)
+        if (!row) {
+            reject({
+                message: 'ID is not good',
+                status: 404
+            })
+        }
+        resolve(row)
+    })
+}
 
 function rearrangeIDs(array){
     let count = 1;
@@ -115,6 +135,7 @@ function writeJSONFile(filename, content) {
 //EXPORTS THAT WILL BE USED IN EXPRESS ROUTING-----------------------------------------------
 module.exports = {
     getStoryboards,
+    getStoryboardsByUser,
     getStoryboardById,
     createStoryboard,
     updateStoryboard,

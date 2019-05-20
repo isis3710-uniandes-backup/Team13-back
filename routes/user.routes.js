@@ -31,8 +31,10 @@ router.post('/login', async (req, res) => {
         })
         .catch(err => {
             if (err.status) {
+                console.log("aca muere")
                 res.status(err.status).json({ message: err.message });
             } else {
+                console.log("aca muere2")
                 res.status(500).json({ message: err.message });
             }
         });

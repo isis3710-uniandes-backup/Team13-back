@@ -21,7 +21,7 @@ function getStoryboardById(id) {
     })
 }
 //GET SINGLE STORYBOARD BY ID
-function getStoryboardByUser(user) {
+function getStoryboardsByUser(user) {
     return new Promise((resolve, reject) => {
         mustBeInArray2(storyboards, user)
             .then(storyboard => resolve(storyboard))
@@ -96,7 +96,7 @@ function mustBeInArray(array, id){
 }
 function mustBeInArray2(array, user){
     return new Promise((resolve, reject) => {
-        const row = array.find(r => r.userID == user)
+        const row = array.filter(r => r["userID"] == user)
         if (!row) {
             reject({
                 message: 'ID is not good',
@@ -135,7 +135,7 @@ function writeJSONFile(filename, content) {
 //EXPORTS THAT WILL BE USED IN EXPRESS ROUTING-----------------------------------------------
 module.exports = {
     getStoryboards,
-    getStoryboardByUser,
+    getStoryboardsByUser,
     getStoryboardById,
     createStoryboard,
     updateStoryboard,

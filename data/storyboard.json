@@ -1,1 +1,1 @@
-[{"id":1,"timestamp":"Mon Aug 27 2018 15:16:17 GMT+0200 (CEST)","title":"Title 243"}]
+[{"id":1, "userID": 2, "timestamp":"Mon Aug 27 2018 15:16:17 GMT+0200 (CEST)","title":"Title 243"},{"id":2,"userID": 1, "timestamp":"Mon Aug 27 2018 15:16:17 GMT+0200 (CEST)","title":"Some Title"}]
